@@ -24,7 +24,7 @@ This project is intended to provide a simple mechanism for privately sharing sma
 0. Sender specifies their name in Client
 1. Sender specifies intended Receiver in Client
 2. Sender specifies Payload to share in Client
-3. Sender Client generates Passphrase and encrypts Message
+3. Sender Client generates Passphrase and encrypts Payload
 4. Sender submits create Message request to Service
 5. Service returns Message Id to Sender
 6. Service sends Message Link (Id + Nonce) to Receiver via email or SMS
@@ -33,7 +33,7 @@ This project is intended to provide a simple mechanism for privately sharing sma
 ### Receive
 1. Receiver receives email or SMS from Service with Message Link, clicks Message Link
 2. Receiver Client sends request to Service to retrieve Message by Id and Nonce
-3. Receiver receives chat message directly from Sender with Passphrase Link, clicks Link
+3. Receiver receives chat message directly from Sender with Passphrase Link, clicks Passphrase Link
 4. Receiver Client decrypts encrypted Payload and displays to Receiver
 
 # Technology Choices
