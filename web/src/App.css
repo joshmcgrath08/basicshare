@@ -1,0 +1,32 @@
+.modal-content > .panel {
+    margin-bottom: 0px;
+}
+
+.encrypted-payload, .encrypted-message {
+    overflow-wrap: break-word;
+    font-family: monospace;
+    font-size: x-small;
+    padding: 5px;
+    white-space: pre-wrap;
+    min-height: 175px;
+}
+
+#app-root {
+    margin: 15px;
+    max-width: 800px;
+}
+
+.panel-heading {
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.custom-page-header > h1 {
+    font-weight: bolder;
+}
+
+.encrypted-inline-payload {
+    font-family: monospace;
+    font-size: x-small;
+    overflow-wrap: break-word;
+}
