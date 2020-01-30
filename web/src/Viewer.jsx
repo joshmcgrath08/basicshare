@@ -40,6 +40,8 @@ class Viewer extends Component {
                 decryptFailureCount: prevState.decryptFailureCount + 1
             }));
         } else {
+            const store = window.localStorage;
+            store.setItem("password:" + this.props.id, password);
             this.setState({
                 password: password,
                 decryptFailureCount: 0,
