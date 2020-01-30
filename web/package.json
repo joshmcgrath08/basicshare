@@ -16,7 +16,10 @@
     "react-recaptcha": "^2.3.7",
     "react-scripts": "1.1.1",
     "react-stepzilla": "^4.7.0",
-    "sjcl": "^1.0.7"
+    "sjcl": "^1.0.7",
+    "js-yaml": "^3.13.1",
+    "webpack-dev-server": "^3.1.11",
+    "eslint": "^4.18.2"
   },
   "scripts": {
     "start": "react-scripts start",
