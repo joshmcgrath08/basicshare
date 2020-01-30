@@ -1,4 +1,4 @@
-.modal-content > .panel {
+.modal-content > .card {
     margin-bottom: 0px;
 }
 
@@ -16,7 +16,7 @@
     max-width: 800px;
 }
 
-.panel-heading {
+.card-header {
     font-size: 150%;
     font-weight: bold;
 }
@@ -31,6 +31,34 @@
     overflow-wrap: break-word;
 }
 
-.panel-body {
+.card-body {
     overflow-wrap: break-word;
+}
+
+.success .card-header {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.info .card-header {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.warning .card-header {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.danger .card-header {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.footer-buttons .btn {
+    margin: 5px 5px 5px 0px;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HelpBlock, Modal, Button, FormControl, FormGroup, Panel } from 'react-bootstrap';
+import { FormText, Modal, Button, FormControl, FormGroup, Card } from 'react-bootstrap';
 import $ from "jquery";
 import { parsePassword } from './passwordUtil';
 
@@ -42,11 +42,11 @@ class PasswordModal extends Component {
               show={this.props.show}
               onEntered={this.modalEnteredHandler}
               onHide={this.submitHandler}>
-              <Panel bsStyle={this.props.panelStyle}>
-                <Panel.Heading>Password</Panel.Heading>
+              <Card className={this.props.cardType}>
+                <Card.Header>Password</Card.Header>
 
                 <form onSubmit={this.submitHandler}>
-                  <Panel.Body>
+                  <Card.Body>
                     {this.props.errorCount === 0 ?
                      <p>{this.props.initialMessage}</p> :
                      <p>{this.props.followUpMessage}</p>
@@ -58,18 +58,18 @@ class PasswordModal extends Component {
                         value={this.state.password}
                         placeholder="Enter password here"
                         onChange={this.passwordChangeHandler}/>
-                      <HelpBlock>
+                      <FormText>
                         You may enter just the password or the message you received containing the password.
-                      </HelpBlock>
+                      </FormText>
                     </FormGroup>
 
                     <Modal.Footer>
-                      <Button bsStyle="primary" onClick={this.submitHandler}>Decrypt</Button>
+                      <Button variant="primary" onClick={this.submitHandler}>Decrypt</Button>
                     </Modal.Footer>
-                  </Panel.Body>
+                  </Card.Body>
                 </form>
 
-              </Panel>
+              </Card>
             </Modal>
         );
     }

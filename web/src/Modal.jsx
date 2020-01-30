@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal as BootstrapModal, Button, Panel } from 'react-bootstrap';
+import { Modal as BootstrapModal, Button, Card } from 'react-bootstrap';
 import $ from "jquery";
 
 class Modal extends Component {
@@ -40,18 +40,18 @@ class Modal extends Component {
               show={this.state.show}
               onEntered={this.modalEnteredHandler}
             >
-              <Panel bsStyle={this.props.bsStyle}>
+              <Card className={this.props.cardType}>
 
-                <Panel.Heading>{this.props.heading}</Panel.Heading>
+                <Card.Header>{this.props.heading}</Card.Header>
 
-                <Panel.Body>
+                <Card.Body>
                   <p>{this.props.message}</p>
                   <BootstrapModal.Footer>
-                    <Button bsStyle="primary" onClick={this.closeHandler}>Ok</Button>
+                    <Button variant="primary" onClick={this.closeHandler}>Ok</Button>
                   </BootstrapModal.Footer>
-                </Panel.Body>
+                </Card.Body>
 
-              </Panel>
+              </Card>
             </BootstrapModal>
         );
     }

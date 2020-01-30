@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, FormControl, HelpBlock, Panel } from 'react-bootstrap';
+import { FormGroup, FormControl, FormText, Card } from 'react-bootstrap';
 import Joi from 'joi-browser';
 
 import ValidatedStep from './ValidatedStep';
@@ -22,42 +22,42 @@ class MessageStep extends ValidatedStep {
         return (
             <div>
 
-              <Panel bsStyle="danger">
-                <Panel.Heading>Message to Encrypt</Panel.Heading>
-                <Panel.Body>
+              <Card className="danger">
+                <Card.Header>Message to Encrypt</Card.Header>
+                <Card.Body>
                   <FormGroup validationState={this.getValidationState()}>
                     <FormControl
                       type="text"
                       value={this.props.payload}
                       placeholder="Enter your message here"
                       onChange={this.props.onChange}
-                      inputRef={(input) => { this.focusInput = input; }}/>
+                      ref={(input) => { this.focusInput = input; }}/>
                     <FormControl.Feedback/>
                     {this.isValidated() ||
-                     <HelpBlock>
+                     <FormText>
                        Message must consist of between 1 and 250 characters.
-                     </HelpBlock>}
+                     </FormText>}
                   </FormGroup>
-                </Panel.Body>
-              </Panel>
+                </Card.Body>
+              </Card>
 
 
-              <Panel bsStyle="warning">
-                <Panel.Heading>Password for Encrypting</Panel.Heading>
-                <Panel.Body>
+              <Card className="warning">
+                <Card.Header>Password for Encrypting</Card.Header>
+                <Card.Body>
                   {this.props.password}
-                </Panel.Body>
-              </Panel>
+                </Card.Body>
+              </Card>
 
-              <Panel bsStyle="success">
-                <Panel.Heading>Encrypted Message</Panel.Heading>
-                <Panel.Body className="encrypted-payload">
+              <Card className="success">
+                <Card.Header>Encrypted Message</Card.Header>
+                <Card.Body className="encrypted-payload">
                   {JSON.stringify(
                       this.props.encryptedPayload
                           && JSON.parse(this.props.encryptedPayload),
                       null, 2)}
-                </Panel.Body>
-              </Panel>
+                </Card.Body>
+              </Card>
 
             </div>
         );

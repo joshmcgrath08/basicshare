@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import QueryString from 'query-string';
 import Obfuscate from 'react-obfuscate';
 
@@ -10,10 +10,8 @@ import InfoModal from './InfoModal';
 import Contact from './Contact';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
 
 import './App.css';
-
 
 class App extends Component {
     render() {
@@ -57,11 +55,11 @@ class App extends Component {
                   <Obfuscate email="contact@basicshare.io">Contact Us</Obfuscate>
                 </span>
               </p>
-              <Panel>
-                <Panel.Body>
+              <Card>
+                <Card.Body>
                   {component}
-                </Panel.Body>
-              </Panel>
+                </Card.Body>
+              </Card>
             </div>
         );
     }

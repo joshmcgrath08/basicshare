@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, FormControl, HelpBlock, Panel } from 'react-bootstrap';
+import { FormGroup, FormControl, FormText, Card } from 'react-bootstrap';
 import Joi from 'joi-browser';
 
 import ValidatedStep from './ValidatedStep';
@@ -20,24 +20,24 @@ class SenderNameStep extends ValidatedStep {
 
     render() {
         return (
-            <Panel bsStyle="success">
-              <Panel.Heading>Your Name</Panel.Heading>
-              <Panel.Body>
+            <Card className="success">
+              <Card.Header>Your Name</Card.Header>
+              <Card.Body>
                 <FormGroup validationState={this.getValidationState()}>
                   <FormControl
                     type="text"
                     placeholder={this.props.placeholder}
                     value={this.props.value}
                     onChange={this.props.onChange}
-                    inputRef={(input) => { this.focusInput = input; }}/>
+                    ref={(input) => { this.focusInput = input; }}/>
                   <FormControl.Feedback />
                   {this.isValidated() ||
-                   <HelpBlock>
+                   <FormText>
                      Name must be between 1 and 25 characters.
-                   </HelpBlock>}
+                   </FormText>}
                 </FormGroup>
-              </Panel.Body>
-            </Panel>
+              </Card.Body>
+            </Card>
         );
     }
 }

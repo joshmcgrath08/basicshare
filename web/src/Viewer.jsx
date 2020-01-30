@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Panel } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import QueryString from 'query-string';
 
 import { receiveMessage } from './Client';
@@ -100,28 +100,28 @@ class Viewer extends Component {
         return (
             <div>
 
-              <Panel bsStyle="success">
-                <Panel.Heading>Encrypted Message</Panel.Heading>
-                <Panel.Body className="encrypted-message">{message}</Panel.Body>
-              </Panel>
+              <Card className="success">
+                <Card.Header>Encrypted Message</Card.Header>
+                <Card.Body className="encrypted-message">{message}</Card.Body>
+              </Card>
 
-              <Panel bsStyle="danger">
-                <Panel.Heading>Decrypted Message</Panel.Heading>
-                <Panel.Body>{decryptedPayload}</Panel.Body>
-              </Panel>
+              <Card className="danger">
+                <Card.Header>Decrypted Message</Card.Header>
+                <Card.Body>{decryptedPayload}</Card.Body>
+              </Card>
 
-              <Panel bsStyle="info">
-                <Panel.Heading>Share Your Own Message</Panel.Heading>
-                <Panel.Body>
-                  <Button onClick={this.shareHandler} bsStyle="warning">Share A Message</Button>
-                </Panel.Body>
-              </Panel>
+              <Card className="info">
+                <Card.Header>Share Your Own Message</Card.Header>
+                <Card.Body>
+                  <Button onClick={this.shareHandler} variant="warning">Share A Message</Button>
+                </Card.Body>
+              </Card>
 
               <PasswordModal
                 show={this.state.passwordModalOpen}
                 submitHandler={this.decryptHandler}
                 errorCount={this.state.decryptFailureCount}
-                panelStyle="danger"
+                cardType="danger"
                 initialMessage={`Enter the password to decrypt your message. If you have not received the password, please contact ${senderName}`}
                 followUpMessage={`Incorrect password (${decryptFailureCount}). Please try again`} />
 

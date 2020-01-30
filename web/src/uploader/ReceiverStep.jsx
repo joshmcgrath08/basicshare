@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, FormControl, HelpBlock, Panel } from 'react-bootstrap';
+import { FormGroup, FormControl, FormText, Card } from 'react-bootstrap';
 import Joi from 'joi-browser';
 
 import ValidatedStep from './ValidatedStep';
@@ -28,12 +28,12 @@ class ReceiverStep extends ValidatedStep {
 
     render() {
         return (
-            <Panel bsStyle="success">
-              <Panel.Heading>Receiver</Panel.Heading>
-              <Panel.Body>
+            <Card className="success">
+              <Card.Header>Receiver</Card.Header>
+              <Card.Body>
 
                 <FormControl
-                  componentClass="select"
+                  as="select"
                   value={this.props.type}
                   onChange={this.props.onTypeChange}>
                   <option value="email">email</option>
@@ -46,20 +46,20 @@ class ReceiverStep extends ValidatedStep {
                     placeholder={this.props.type === "email" ? "nobody@basicshare.io" : "+1234567890"}
                     value={this.props.value}
                     onChange={this.props.onValueChange}
-                    inputRef={(input) => { this.focusInput = input; }}/>
+                    ref={(input) => { this.focusInput = input; }}/>
                   <FormControl.Feedback />
                   {this.isValidated() ||
-                   <HelpBlock>
+                   <FormText>
                      {this.props.type === "sms" &&
                       "Please enter a valid phone number."
                      }
                      {this.props.type === "email" &&
                       "Please enter a valid email address."
                      }
-                   </HelpBlock>}
+                   </FormText>}
                 </FormGroup>
-              </Panel.Body>
-            </Panel>
+              </Card.Body>
+            </Card>
         );
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormGroup, ControlLabel, FormControl, Panel } from 'react-bootstrap';
+import { FormGroup, FormLabel, FormControl, Card } from 'react-bootstrap';
 import $ from "jquery";
 import Recaptcha from 'react-recaptcha';
 
@@ -89,23 +89,23 @@ class SendEncryptedMessageStep extends Component {
     render() {
         return (
             <div>
-              <Panel bsStyle="success">
-                <Panel.Heading>Review and Send</Panel.Heading>
-                <Panel.Body>
+              <Card className="success">
+                <Card.Header>Review and Send</Card.Header>
+                <Card.Body>
                   <FormGroup>
-                    <ControlLabel>From</ControlLabel>
+                    <FormLabel>From</FormLabel>
                     <FormControl readOnly type="text" value={this.props.message.senderName}/>
-                    <ControlLabel>To</ControlLabel>
+                    <FormLabel>To</FormLabel>
                     <FormControl readOnly type="text" value={this.props.message.receiver.value}/>
-                    <ControlLabel>Encrypted Message</ControlLabel>
-                    <FormControl readOnly componentClass="textarea" rows="3" className="encrypted-inline-payload" value={this.props.message.encryptedPayload}/>
+                    <FormLabel>Encrypted Message</FormLabel>
+                    <FormControl readOnly as="textarea" rows="3" className="encrypted-inline-payload" value={this.props.message.encryptedPayload}/>
                   </FormGroup>
-                </Panel.Body>
-              </Panel>
+                </Card.Body>
+              </Card>
 
-              <Panel bsStyle="info">
-                <Panel.Heading>Are You a Robot?</Panel.Heading>
-                <Panel.Body>
+              <Card className="info">
+                <Card.Header>Are You a Robot?</Card.Header>
+                <Card.Body>
                   {!this.state.recaptchaVerification &&
                    <Recaptcha
                      ref={this.recaptchaRefHandler}
@@ -114,8 +114,8 @@ class SendEncryptedMessageStep extends Component {
                      verifyCallback={this.recaptchaVerifiedHandler}
                    />
                   }
-                </Panel.Body>
-              </Panel>
+                </Card.Body>
+              </Card>
 
               {this.state.serviceFailureModal}
             </div>
