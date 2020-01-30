@@ -98,6 +98,9 @@ make
 ## React App
 
 ```sh
+cd web
 env REACT_APP_DEBUG=false REACT_APP_API_URL=https://api.basicshare.io REACT_APP_API_KEY=<api key> yarn build
+cd build
 # Upload contents of build/ directory to S3 bucket
+for f in $(find . -type f | tac); do aws --profile basicshare_web_s3 s3 cp $f s3://basicshare-web/$(realpath --relative-to=. $f); done
 ```
