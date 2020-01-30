@@ -30,3 +30,7 @@
     font-size: x-small;
     overflow-wrap: break-word;
 }
+
+.panel-body {
+    overflow-wrap: break-word;
+}
