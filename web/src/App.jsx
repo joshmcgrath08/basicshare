@@ -31,9 +31,21 @@ class App extends Component {
             if (store.getItem("message:" + query.id) !== null) {
                 component = <Viewer id={query.id} nonce={null}/>;
             } else {
-                component = <InfoModal
-                              message={"Password has been stored"}
-                              closeAfterMillis={2000}/>;
+                component = (
+                    <div>
+                      <Card className="success">
+                        <Card.Header>Success!</Card.Header>
+                        <Card.Body>
+                          Password stored. You can close this window.
+                        </Card.Body>
+                      </Card>
+                      <Card className="info">
+                        <Card.Header>What's Next?</Card.Header>
+                        <Card.Body>
+                          Look for a text message or email with a link to retrieve your message.
+                        </Card.Body>
+                      </Card>
+                    </div>);
             }
         } else if (path === "" && mode === "upload") {
             component = <Uploader/>;
