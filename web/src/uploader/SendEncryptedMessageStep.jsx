@@ -32,7 +32,9 @@ class SendEncryptedMessageStep extends Component {
         const senderName = this.props.message.senderName;
         const receiver = this.props.message.receiver;
         const encryptedPayload = this.props.message.encryptedPayload;
-        const promise = sendMessage(senderName, receiver, encryptedPayload, null, this.state.recaptchaVerification, this.modalCloseHandler);
+        const promise = sendMessage(
+            senderName, receiver, encryptedPayload, null, this.state.recaptchaVerification,
+            this.modalCloseHandler, this.getRecaptchaOverrideCookie());
         const component = this;
 
         this.setState({
@@ -64,8 +66,18 @@ class SendEncryptedMessageStep extends Component {
         });
     }
 
+    getRecaptchaOverrideCookie() {
+        const cookies = document.cookie.split(";").filter(
+            x => x.trim().indexOf("recaptchaOverride=") === 0);
+        if (cookies.length > 0) {
+            return cookies[0].split("=")[1];
+        }
+        return null;
+    }
+
     isValidated() {
-        if (!this.state.recaptchaVerification && !DEBUG) {
+        const hasCookie = this.getRecaptchaOverrideCookie() !== null;
+        if (!this.state.recaptchaVerification && !DEBUG && !hasCookie) {
             return false;
         }
 

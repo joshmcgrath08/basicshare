@@ -6,18 +6,20 @@ import ErrorModal from './ErrorModal';
 import { API_URL, API_KEY, DEBUG } from './Constants';
 
 function sendMessage(
-    senderName, receiver, payload, description, recaptchaVerification, modalCloseHandler) {
+    senderName, receiver, payload, description,
+    recaptchaVerification, modalCloseHandler, recaptchaOverride) {
     if (DEBUG) {
         return doRequest(
             "send", {
-                senderName, receiver, payload, description,
-                recaptchaVerification: recaptchaVerification || "dummy",
+                senderName, receiver, payload, description, recaptchaVerification,
                 recaptchaOverride: "dummy"},
             modalCloseHandler);
     } else {
-        return doRequest(
-            "send", {senderName, receiver, payload, description, recaptchaVerification},
-            modalCloseHandler);
+        const req = {senderName, receiver, payload, description, recaptchaVerification};
+        if (recaptchaOverride) {
+            req.recaptchaOverride = recaptchaOverride;
+        }
+        return doRequest("send", req, modalCloseHandler);
     }
 }
 
