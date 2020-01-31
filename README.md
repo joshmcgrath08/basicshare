@@ -2,6 +2,8 @@
 
 This project is intended to provide a simple mechanism for privately sharing small blobs of text (e.g. links). All encryption, decryption, key generation, and key sharing happen entirely on the client, ensuring the service is unable to decrypt any of the shared content. A two-factor scheme is employed to separate the capability of retrieving the encrypted message and the capability of decrypting the message.
 
+![BasicShare Diagram](https://www.dl.dropboxusercontent.com/s/2l8rjten0ucd1gm/basicshare.png?dl=0)
+
 # Terms
 
 - __Sender__: One who wants to send a secret
