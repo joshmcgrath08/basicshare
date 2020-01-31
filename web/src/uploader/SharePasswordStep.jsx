@@ -28,6 +28,8 @@ class SharePasswordStep extends Component {
               <Card className="success">
                 <Card.Header>Share the Password</Card.Header>
                 <Card.Body>
+                  Share the password message below so your recipient can decrypt your message
+                  <hr/>
                   Click or copy to decrypt {this.props.senderName}'s BasicShare message: <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
                 </Card.Body>
                 <Card.Footer>

@@ -21,7 +21,7 @@ class SenderNameStep extends ValidatedStep {
     render() {
         return (
             <Card className="success">
-              <Card.Header>Your Name</Card.Header>
+              <Card.Header>Your Info</Card.Header>
               <Card.Body>
                 <FormGroup validationState={this.getValidationState()}>
                   <FormControl

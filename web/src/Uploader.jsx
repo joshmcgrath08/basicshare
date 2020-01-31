@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import StepZilla from 'react-stepzilla';
+import 'react-stepzilla/src/css/main.css';
 
 import { encrypt } from './Encryption';
 import SenderNameStep from './uploader/SenderNameStep';
@@ -111,16 +112,17 @@ class Uploader extends Component {
             />
         )
         const steps = [
-            { name: "1", component: senderNameStep },
-            { name: "2", component: receiverStep },
-            { name: "3", component: messageStep },
-            { name: "4", component: sendEncryptedMessageStep },
-            { name: "5", component: sharePasswordStep }
+            { name: "Your Info", component: senderNameStep },
+            { name: "Their Info", component: receiverStep },
+            { name: "Message to Encrypt", component: messageStep },
+            { name: "Send It", component: sendEncryptedMessageStep },
+            { name: "Share Password", component: sharePasswordStep }
         ];
         return (
             <StepZilla
               steps={steps}
-              showSteps={false}
+              showSteps={true}
+              stepNavigation={false}
               prevBtnOnLastStep={false}
               nextTextOnFinalActionStep="Send Message"
             />

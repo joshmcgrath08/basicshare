@@ -29,7 +29,7 @@ class ReceiverStep extends ValidatedStep {
     render() {
         return (
             <Card className="success">
-              <Card.Header>Receiver</Card.Header>
+              <Card.Header>Their Info</Card.Header>
               <Card.Body>
 
                 <FormControl

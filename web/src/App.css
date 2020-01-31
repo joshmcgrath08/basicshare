@@ -62,3 +62,7 @@
 .footer-buttons .btn {
     margin: 5px 5px 5px 0px;
 }
+
+ol.progtrckr li span {
+    padding: 0 0.5rem;
+}

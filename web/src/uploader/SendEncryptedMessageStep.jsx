@@ -90,7 +90,7 @@ class SendEncryptedMessageStep extends Component {
         return (
             <div>
               <Card className="success">
-                <Card.Header>Review and Send</Card.Header>
+                <Card.Header>Send It</Card.Header>
                 <Card.Body>
                   <FormGroup>
                     <FormLabel>From</FormLabel>
