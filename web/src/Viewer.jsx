@@ -15,9 +15,17 @@ class Viewer extends Component {
 
         const store = window.localStorage;
         const storePassword = store.getItem("password:" + this.props.id);
-        let storeMessage = store.getItem("message:" + this.props.id)
+        let storeMessage = store.getItem("message:" + this.props.id);
+        store.removeItem("password:" + this.props.id);
+        store.removeItem("message:" + this.props.id);
+
         if (storeMessage !== null) {
-            storeMessage = JSON.parse(storeMessage);
+            // Only use cached message if we have a password
+            if (storePassword) {
+                storeMessage = JSON.parse(storeMessage);
+            } else {
+                storeMessage = null;
+            }
         }
 
         this.state = {
@@ -41,7 +49,8 @@ class Viewer extends Component {
             }));
         } else {
             const store = window.localStorage;
-            store.setItem("password:" + this.props.id, password);
+            store.removeItem("password:" + this.props.id);
+            store.removeItem("message:" + this.props.id);
             this.setState({
                 password: password,
                 decryptFailureCount: 0,
@@ -69,7 +78,9 @@ class Viewer extends Component {
             receiveMessage(this.props.id, this.props.nonce)
                 .then(function(data) {
                     const store = window.localStorage;
-                    store.setItem("message:" + component.props.id, JSON.stringify(data));
+                    if (!component.state.password) {
+                        store.setItem("message:" + component.props.id, JSON.stringify(data));
+                    }
                     component.setState({
                         message: data,
                         passwordModalOpen: component.state.password === "",
