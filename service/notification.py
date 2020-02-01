@@ -68,6 +68,8 @@ def message_body(message):
     if message.description is not None:
         res.append("Description: " + message.description)
     res.append(get_view_url(message))
+    res.append("What's Next?\nYou will receive a second message from {} with a password.".format(
+        message.sender_name))
     return "\n\n".join(res)
 
 def get_view_url(message):
