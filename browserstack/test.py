@@ -5,7 +5,7 @@ import uuid
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 
-EXECUTOR = os.environ["EXECUTOR"]
+SELENIUM_EXECUTOR = os.environ["SELENIUM_EXECUTOR"]
 RECAPTCHA_OVERRIDE = os.environ["RECAPTCHA_OVERRIDE"]
 EMAIL_ADDRESS = os.environ["EMAIL_ADDRESS"]
 EMAIL_PASSWORD = os.environ["EMAIL_PASSWORD"]
@@ -86,7 +86,7 @@ def run_test(driver):
     assert driver.find_element_by_css_selector(".danger .card-body").text == message
 
 try:
-    driver = webdriver.Remote(command_executor=EXECUTOR, desired_capabilities=desired_cap)
+    driver = webdriver.Remote(command_executor=SELENIUM_EXECUTOR, desired_capabilities=desired_cap)
     run_test(driver)
 finally:
     driver.quit()
