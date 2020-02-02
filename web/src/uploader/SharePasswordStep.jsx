@@ -13,7 +13,7 @@ class SharePasswordStep extends Component {
         const url = formatPasswordUrl(this.props.senderName, this.props.password, this.props.messageId);
         window.navigator.share({
             title: `Password for ${this.props.senderName}'s BasicShare message`,
-            text: `The password for ${this.props.senderName}'s BasicShare message is: ${this.props.password}\n\nYou will receive a second link via text or email to retrieve the message.\n\nYou can manually enter the password when you retrieve the message or click this link: ${url}`
+            text: `Click the password link for ${this.props.senderName}'s BasicShare message: ${url} \n\nYou will receive a second link via text or email to retrieve the message. \n\nAlternately, you can manually enter the password when you retrieve the message: ${this.props.password}`
         });
     }
 
@@ -31,13 +31,13 @@ class SharePasswordStep extends Component {
                   Share the password message below so your recipient can decrypt your message.
                   <hr/>
                   <p>
-                    The password for {this.props.senderName}'s BasicShare message is: {this.props.password}
+                    Click the password link for {this.props.senderName}'s BasicShare message: <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
                   </p>
                   <p>
                     You will receive a second link via text or email to retrieve the message.
                   </p>
                   <p>
-                    You can manually enter the password when you retrieve the message or click this link: <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
+                    Alternately, you can manually enter the password when you retrieve the message: {this.props.password}
                   </p>
                 </Card.Body>
                 <Card.Footer>
