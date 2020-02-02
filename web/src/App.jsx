@@ -65,6 +65,8 @@ class App extends Component {
                   <a href="https://termsfeed.com/terms-conditions/849b9587d74e05e7109ea68b70c25d56">Terms and Conditions</a>
                   &nbsp;/&nbsp;
                   <Obfuscate email="contact@basicshare.io">Contact Us</Obfuscate>
+                  &nbsp;/&nbsp;
+                  <a href="https://github.com/joshmcgrath08/basicshare">Source on Github</a>
                 </span>
               </p>
               <Card>
