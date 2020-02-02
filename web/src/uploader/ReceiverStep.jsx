@@ -51,10 +51,10 @@ class ReceiverStep extends ValidatedStep {
                   {this.isValidated() ||
                    <FormText>
                      {this.props.type === "sms" &&
-                      "Please enter a valid phone number."
+                      "Please enter a valid phone number (e.g. +1234567890)."
                      }
                      {this.props.type === "email" &&
-                      "Please enter a valid email address."
+                      "Please enter a valid email address (e.g. contact@basicshare.io)."
                      }
                    </FormText>}
                 </FormGroup>
