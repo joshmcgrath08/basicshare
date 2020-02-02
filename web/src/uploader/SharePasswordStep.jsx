@@ -13,7 +13,7 @@ class SharePasswordStep extends Component {
         const url = formatPasswordUrl(this.props.senderName, this.props.password, this.props.messageId);
         window.navigator.share({
             title: `Password for ${this.props.senderName}'s BasicShare message`,
-            text: `The password is ${this.props.password} or you may copy this link: ${url}`
+            text: `The password for ${this.props.senderName}'s BasicShare message is ${this.props.password} or you may copy this link: ${url}`
         });
     }
 
