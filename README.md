@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/joshmcgrath08/basicshare.svg?branch=master)](https://travis-ci.org/joshmcgrath08/basicshare)
+
 # Overview
 
 This project is intended to provide a simple mechanism for privately sharing small blobs of text (e.g. links). All encryption, decryption, key generation, and key sharing happen entirely on the client, ensuring the service is unable to decrypt any of the shared content. A two-factor scheme is employed to separate the capability of retrieving the encrypted message and the capability of decrypting the message.
