@@ -6,7 +6,6 @@ import Obfuscate from 'react-obfuscate';
 import Viewer from './Viewer';
 import Uploader from './Uploader';
 import ErrorModal from './ErrorModal';
-import InfoModal from './InfoModal';
 import Contact from './Contact';
 
 import 'bootstrap/dist/css/bootstrap.css';
