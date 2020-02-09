@@ -23,7 +23,7 @@ class SenderNameStep extends ValidatedStep {
             <Card className="success">
               <Card.Header>Your Info</Card.Header>
               <Card.Body>
-                <FormGroup validationState={this.getValidationState()}>
+                <FormGroup>
                   <FormControl
                     type="text"
                     placeholder={this.props.placeholder}

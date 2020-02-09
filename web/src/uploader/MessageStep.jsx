@@ -25,7 +25,7 @@ class MessageStep extends ValidatedStep {
               <Card className="danger">
                 <Card.Header>Message to Encrypt</Card.Header>
                 <Card.Body>
-                  <FormGroup validationState={this.getValidationState()}>
+                  <FormGroup>
                     <FormControl
                       type="text"
                       value={this.props.payload}

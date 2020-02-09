@@ -40,13 +40,13 @@ class ReceiverStep extends ValidatedStep {
                   <option value="sms">sms</option>
                 </FormControl>
 
-                <FormGroup validationState={this.getValidationState()}>
                   <FormControl
                     type={this.props.type === "email" ? "email" : "tel"}
                     placeholder={this.props.type === "email" ? "nobody@basicshare.io" : "+1234567890"}
                     value={this.props.value}
                     onChange={this.props.onValueChange}
                     ref={(input) => { this.focusInput = input; }}/>
+                <FormGroup>
                   <FormControl.Feedback />
                   {this.isValidated() ||
                    <FormText>
