@@ -56,7 +56,7 @@ class App extends Component {
 
         return (
             <div>
-              <p className="custom-page-header">
+              <div className="custom-page-header">
                 <h1>BasicShare</h1>
                 <span>
                   <a href="https://termsfeed.com/privacy-policy/a2e9a6463963572610d4b59f4b833e37">Privacy Policy</a>
@@ -67,7 +67,7 @@ class App extends Component {
                   &nbsp;/&nbsp;
                   <a href="https://github.com/joshmcgrath08/basicshare">Source on Github</a>
                 </span>
-              </p>
+              </div>
               <Card>
                 <Card.Body>
                   {component}
