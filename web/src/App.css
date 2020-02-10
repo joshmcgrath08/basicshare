@@ -70,3 +70,12 @@
 ol.progtrckr li span {
     padding: 0 0.5rem;
 }
+
+.recipient-type-and-contacts {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.recipient-type-and-contacts .choose-contact-button {
+    margin-left: 10px;
+}

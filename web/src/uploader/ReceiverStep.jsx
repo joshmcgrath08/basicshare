@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, FormControl, FormText, Card } from 'react-bootstrap';
+import { Button, FormGroup, FormControl, FormText, Card } from 'react-bootstrap';
 import Joi from 'joi-browser';
 
 import ValidatedStep from './ValidatedStep';
@@ -8,6 +8,7 @@ class ReceiverStep extends ValidatedStep {
     constructor(props) {
         super(props);
         this.validator = this.validator.bind(this);
+        this.contactSelector = this.contactSelector.bind(this);
     }
 
     validator() {
@@ -26,27 +27,49 @@ class ReceiverStep extends ValidatedStep {
         this.focusInput.focus();
     }
 
+    contactSelector(e) {
+        const component = this;
+        const cp = component.props.type === "sms" ? "tel" : "email";
+        window.navigator.contacts.select([cp], {}).then(
+            (contacts) => {
+                if (contacts && contacts[0] && contacts[0][cp] && contacts[0][cp][0]) {
+                    const cv = contacts[0][cp][0];
+                    component.props.onValueChange({target: {value: cv}});
+                }
+            });
+    }
+
     render() {
         return (
             <Card className="success">
               <Card.Header>Their Info</Card.Header>
               <Card.Body>
 
-                <FormControl
-                  as="select"
-                  value={this.props.type}
-                  onChange={this.props.onTypeChange}>
-                  <option value="email">email</option>
-                  <option value="sms">sms</option>
-                </FormControl>
+                <div className="recipient-type-and-contacts">
+                  <FormControl
+                    as="select"
+                    value={this.props.type}
+                    onChange={this.props.onTypeChange}
+                    className="recipient-type-selector">
+                    <option value="email">email</option>
+                    <option value="sms">sms</option>
+                  </FormControl>
 
+                  <Button
+                    disabled={!window.navigator || !window.navigator.contacts}
+                    onClick={this.contactSelector}
+                    className="choose-contact-button text-nowrap">
+                    Use Contacts
+                  </Button>
+                </div>
+                <FormGroup>
                   <FormControl
                     type={this.props.type === "email" ? "email" : "tel"}
                     placeholder={this.props.type === "email" ? "nobody@basicshare.io" : "+1234567890"}
                     value={this.props.value}
                     onChange={this.props.onValueChange}
-                    ref={(input) => { this.focusInput = input; }}/>
-                <FormGroup>
+                    ref={(input) => { this.focusInput = input; }}
+                    className="type-selector"/>
                   <FormControl.Feedback />
                   {this.isValidated() ||
                    <FormText>
