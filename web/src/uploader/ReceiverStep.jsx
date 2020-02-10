@@ -33,10 +33,23 @@ class ReceiverStep extends ValidatedStep {
         window.navigator.contacts.select([cp], {}).then(
             (contacts) => {
                 if (contacts && contacts[0] && contacts[0][cp] && contacts[0][cp][0]) {
-                    const cv = contacts[0][cp][0];
+                    let cv = contacts[0][cp][0];
+                    if (cp === "tel") {
+                        cv = component.formatPhoneNumber(cv);
+                    }
                     component.props.onValueChange({target: {value: cv}});
                 }
             });
+    }
+
+    formatPhoneNumber(num) {
+        if (num.startsWith("+")) {
+            return num;
+        } else if (num.startsWith("1")) {
+            return "+" + num;
+        } else {
+            return "+1" + num;
+        }
     }
 
     render() {
