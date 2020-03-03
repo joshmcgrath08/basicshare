@@ -6,10 +6,11 @@ import datetime
 import logging
 import uuid
 
-from constants import MESSAGE_MAX_ACCESSES, MESSAGE_EXPIRATION_SECONDS
+from constants import MESSAGE_MAX_ACCESSES, MESSAGE_EXPIRATION_SECONDS, READ_RECEIPT_EXPIRATION_SECONDS
 from exceptions import HttpError
 from message import new_message, message_to_external_json
 from notification import send_notification
+from read_receipt import new_read_receipt
 from recaptcha import verify_recaptcha
 import store
 
@@ -48,3 +49,10 @@ def get_message(message_id, nonce):
         raise HttpError("Message has expired", 410, messageId=message_id)
 
     return message_to_external_json(message)
+
+def mark_as_read(message_id):
+    message_id = uuid.UUID(message_id)
+    read_receipt = new_read_receipt(message_id, READ_RECEIPT_EXPIRATION_SECONDS)
+    logger.info("Storing read receipt {}".format(read_receipt.id))
+    store.put_read_receipt(read_receipt)
+    return None

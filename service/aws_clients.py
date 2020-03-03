@@ -27,6 +27,22 @@ if os.getenv("FLASK_DEBUG"):
         ]
     )
 
+    DDB.create_table(
+        AttributeDefinitions=[
+            {
+                "AttributeName": "id",
+                "AttributeType": "S"
+            }
+        ],
+        TableName="ReadReceipts",
+        KeySchema=[
+            {
+                "AttributeName": "id",
+                "KeyType": "HASH"
+            }
+        ]
+    )
+
     KMS = boto3.client("kms")
 
     SES = boto3.client("ses")

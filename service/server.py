@@ -50,6 +50,12 @@ def receive():
         ("nonce", "uuid"))
     return f.jsonify(app_impl.get_message(j["id"], j["nonce"]))
 
+@app.route("/messages/markasread", methods=["POST"])
+def mark_as_read():
+    _assert_json(f.request)
+    j = f.request.get_json()
+    _assert_params(j, ("id", "uuid"))
+    return f.jsonify(app_impl.mark_as_read(j["id"]))
 
 CORS_HEADERS = {
     "Access-Control-Allow-Origin": ACCESS_CONTROL_ALLOW_ORIGIN,

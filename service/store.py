@@ -1,5 +1,5 @@
 """
-Module storing and retrieving messages by message id.
+Module storing and retrieving objects by id.
 """
 
 import logging
@@ -8,10 +8,13 @@ import boto3
 import botocore
 
 from aws_clients import DDB
+from ddb_utils import id_to_ddb
 from exceptions import HttpError
-from message import message_to_ddb, ddb_to_message, id_to_ddb
+from message import message_to_ddb, ddb_to_message
+from read_receipt import read_receipt_to_ddb
 
 MESSAGE_TABLE = "Messages"
+READ_RECEIPTS_TABLE = "ReadReceipts"
 
 logger = logging.getLogger()
 
@@ -35,3 +38,6 @@ def get_message(message_id):
             raise HttpError("Message does not exist", 404, messageId=message_id)
         else:
             raise e
+
+def put_read_receipt(read_receipt):
+    DDB.put_item(TableName=READ_RECEIPTS_TABLE, Item=read_receipt_to_ddb(read_receipt))

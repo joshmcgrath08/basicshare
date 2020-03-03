@@ -7,6 +7,8 @@ import datetime
 import dateutil.parser
 import uuid
 
+from ddb_utils import *
+
 Message = collections.namedtuple(
     "Message", ["sender_name",
                 "receiver_type",
@@ -41,32 +43,7 @@ def new_message(
                    0,
                    ddb_ttl)
 
-def id_to_ddb(message_id):
-    return {
-        "id": {
-            "S": str(message_id)
-        }
-    }
-
 def message_to_ddb(message):
-    def ddb_str(s):
-        return {"S": s}
-
-    def ddb_num(n):
-        return {"N": str(n)}
-
-    def ddb_datetime(dt):
-        if dt is not None:
-            dt = dt.isoformat()
-        return ddb_str(dt)
-
-    def filter_nulls(o):
-        res = {}
-        for k in o:
-            if o[k][list(o[k].keys())[0]] is not None:
-                res[k] = o[k]
-        return res
-
     res = {
         "sender_name": ddb_str(message.sender_name),
         "receiver_type": ddb_str(message.receiver_type),
@@ -83,7 +60,7 @@ def message_to_ddb(message):
         "ddb_ttl": ddb_num(message.ddb_ttl)
     }
 
-    return filter_nulls(res)
+    return ddb_filter_nulls(res)
 
 def message_to_external_json(message):
     def format_datetime(dt):
