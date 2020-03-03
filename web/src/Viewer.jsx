@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import QueryString from 'query-string';
 
-import { receiveMessage } from './Client';
+import { markAsRead, receiveMessage } from './Client';
 import { decrypt } from './Encryption';
 import PasswordModal from './PasswordModal';
 
@@ -28,15 +28,21 @@ class Viewer extends Component {
             }
         }
 
+        const decryptSuccessful = (
+            storePassword
+                && storeMessage
+                && this.canDecrypt(storePassword, storeMessage))
+              || false;
+
+        if (decryptSuccessful) {
+            markAsRead(this.props.id);
+        }
+
         this.state = {
             password: storePassword || "",
             message: storeMessage || null,
             passwordModalOpen: false,
-            decryptSuccessful: (
-                storePassword
-                    && storeMessage
-                    && this.canDecrypt(storePassword, storeMessage))
-                || false,
+            decryptSuccessful: decryptSuccessful,
             decryptFailureCount: 0,
             serviceFailureModal: null
         };
@@ -51,6 +57,7 @@ class Viewer extends Component {
             const store = window.localStorage;
             store.removeItem("password:" + this.props.id);
             store.removeItem("message:" + this.props.id);
+            markAsRead(this.props.id);
             this.setState({
                 password: password,
                 decryptFailureCount: 0,
@@ -81,10 +88,14 @@ class Viewer extends Component {
                     if (!component.state.password) {
                         store.setItem("message:" + component.props.id, JSON.stringify(data));
                     }
+                    const decryptSuccessful = component.state.password && component.canDecrypt(component.state.password, data);
+                    if (decryptSuccessful) {
+                        markAsRead(component.props.id);
+                    }
                     component.setState({
                         message: data,
                         passwordModalOpen: component.state.password === "",
-                        decryptSuccessful: component.state.password && component.canDecrypt(component.state.password, data)
+                        decryptSuccessful: decryptSuccessful
                     });
                 }, function(modal) {
                     component.setState({

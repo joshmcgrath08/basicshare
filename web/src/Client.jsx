@@ -27,6 +27,10 @@ function receiveMessage(id, nonce, modalCloseHandler) {
     return doRequest("receive", {id, nonce}, modalCloseHandler);
 }
 
+function markAsRead(id, modalCloseHandler) {
+    return doRequest("markasread", {id}, modalCloseHandler);
+}
+
 function doRequest(operation, data, modalCloseHandler) {
     return $.ajax({
         url: API_URL + "/messages/" + operation,
@@ -51,7 +55,7 @@ function makeFailHandler(operation, modalCloseHandler) {
         }
         msg = `Failed to ${operation} message. ${msg}`;
         return $.Deferred().reject(<ErrorModal message={msg} key={uuid()} modalCloseHandler={modalCloseHandler}/>);
-    }
+    };
 }
 
-export { sendMessage, receiveMessage };
+export { sendMessage, receiveMessage, markAsRead };
